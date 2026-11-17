@@ -118,7 +118,10 @@ Evandro Ichiro Fuse Sakai</a>
 <section id="topo" style="position: relative; border-bottom: 1px solid {{c.line}}">
 <div style="max-width: 1200px; margin: 0 auto; padding: 88px 32px 104px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
 <div style="flex: 999 1 460px; min-width: 0">
-<p class="hero-in" style="margin: 0 0 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.8125em; letter-spacing: 0.08em; text-transform: uppercase; color: {{c.accent}}; animation-delay: .1s">{{t.kicker}}</p>
+<div class="hero-in" style="display: flex; align-items: center; gap: 16px; margin: 0 0 24px; animation-delay: .1s">
+<img src="assets/foto-perfil.jpg" alt="{{t.photoAlt}}" style="width: 84px; height: 84px; border-radius: 50%; object-fit: cover; filter: grayscale(1) contrast(1.08); border: 1.5px solid {{c.ink}}; flex: none">
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8125em; letter-spacing: 0.08em; text-transform: uppercase; color: {{c.accent}}">{{t.kicker}}</p>
+</div>
 <h1 class="hero-in" style="margin: 0; font-family: 'Shippori Mincho', serif; font-weight: 800; font-size: clamp(2.6em, 6.4vw, 5em); line-height: 1.02; letter-spacing: -0.01em; animation-delay: .25s">Evandro Ichiro Fuse Sakai</h1>
 <svg aria-hidden="true" viewBox="0 0 520 28" height="24" preserveAspectRatio="none" style="display: block; width: min(100%, 460px); margin-top: 10px"><path class="enso" d="M4 18 C 90 8 190 22 300 12 S 470 6 516 14" fill="none" stroke="{{c.ink}}" stroke-width="5" stroke-linecap="round"></path><path class="enso" d="M40 24 C 160 18 300 24 420 19" fill="none" stroke="{{c.ink}}" stroke-width="1.4" stroke-linecap="round" style="animation-delay: .5s"></path></svg>
 <p class="hero-in" style="margin: 32px 0 0; max-width: 620px; font-family: 'Shippori Mincho', serif; font-weight: 600; font-size: clamp(1.375em, 2.4vw, 1.75em); line-height: 1.45; animation-delay: .6s">{{t.heroLine}}</p>
@@ -320,6 +323,9 @@ Evandro Ichiro Fuse Sakai</a>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px">
 <sc-for list="{{awards}}" as="a" hint-placeholder-count="2">
 <article class="rv lift" style="border: 1px solid rgba(255,255,255,0.45); padding: 32px; display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.04)">
+<sc-if value="{{a.hasPhoto}}" hint-placeholder-val="{{ true }}">
+<img src="{{a.photo}}" alt="{{a.photoAlt}}" style="display: block; width: calc(100% + 64px); margin: -32px -32px 12px; aspect-ratio: 4 / 3; object-fit: cover; border-bottom: 1px solid rgba(255,255,255,0.45)">
+</sc-if>
 <div style="display: flex; align-items: center; gap: 16px">
 <span style="display: inline-flex; align-items: center; justify-content: center; min-width: 72px; height: 72px; padding: 0 10px; box-sizing: border-box; border: 1.5px solid {{c.panelLabel}}; border-radius: 0; font-family: 'Shippori Mincho', serif; font-weight: 800; font-size: 1.75em; color: {{c.panelLabel}}">{{a.rank}}</span>
 <div>
@@ -507,7 +513,7 @@ heroLine: 'Construo produtos de IA aplicada que saem do protótipo e entram em u
 ctaProjects: 'Ver projetos', highlightsLabel: 'Destaques', projTitle: 'Projetos selecionados', myRole: 'Meu papel:',
 leadTitle: 'Liderança e comunidade', awardsTitle: 'Prêmios e conquistas', navAwards: 'Prêmios', olyTitle: 'Olimpíadas científicas', olySub: 'Medalhista nacional desde 2017, com formação matemática no IMPA (PIC e PIC Avançado).', eduTitle: 'Formação e certificações',
 contactTitle: 'Vamos construir algo que entre em uso.', contactLine: 'Aberto a conversas sobre IA aplicada, parcerias com a LIA e trocas sobre produtos AI-native.',
-emailPh: 'evandroichirofusesakai@gmail.com', githubPh: 'github.com/ichirofsk', shotLabel: 'Tela', shotsLabel: 'Telas do projeto', shotMotor: 'Motor em ação (ilustração)', seeGithub: 'Ver no GitHub ›', seeStore: 'Ver na App Store ›', mConv: 'conversa', mMotor: 'motor', mAudit: 'auditoria', mOffer: 'proposta'
+emailPh: 'evandroichirofusesakai@gmail.com', githubPh: 'github.com/ichirofsk', shotLabel: 'Tela', shotsLabel: 'Telas do projeto', photoAlt: 'Foto de Evandro Ichiro Fuse Sakai', shotMotor: 'Motor em ação (ilustração)', seeGithub: 'Ver no GitHub ›', seeStore: 'Ver na App Store ›', mConv: 'conversa', mMotor: 'motor', mAudit: 'auditoria', mOffer: 'proposta'
 },
 en: {
 lang: 'en', navLabel: 'Sections', navExp: 'Experience', navProj: 'Projects', navLead: 'Leadership', navEdu: 'Education', navContact: 'Contact',
@@ -517,7 +523,7 @@ heroLine: 'I build applied AI products that make it past the prototype and into 
 ctaProjects: 'See projects', highlightsLabel: 'Highlights', projTitle: 'Selected projects', myRole: 'My role:',
 leadTitle: 'Leadership and community', awardsTitle: 'Awards and achievements', navAwards: 'Awards', olyTitle: 'Science olympiads', olySub: 'National medalist since 2017, with mathematical training at IMPA (PIC and Advanced PIC).', eduTitle: 'Education and certifications',
 contactTitle: "Let's build something people actually use.", contactLine: 'Open to conversations about applied AI, partnerships with LIA and exchanges about AI-native products.',
-emailPh: 'evandroichirofusesakai@gmail.com', githubPh: 'github.com/ichirofsk', shotLabel: 'Screen', shotsLabel: 'Project screens', shotMotor: 'Engine at work (illustration)', seeGithub: 'View on GitHub ›', seeStore: 'View on the App Store ›', mConv: 'conversation', mMotor: 'engine', mAudit: 'audit', mOffer: 'offer'
+emailPh: 'evandroichirofusesakai@gmail.com', githubPh: 'github.com/ichirofsk', shotLabel: 'Screen', shotsLabel: 'Project screens', photoAlt: 'Photo of Evandro Ichiro Fuse Sakai', shotMotor: 'Engine at work (illustration)', seeGithub: 'View on GitHub ›', seeStore: 'View on the App Store ›', mConv: 'conversation', mMotor: 'engine', mAudit: 'audit', mOffer: 'offer'
 }
 };
 
@@ -582,8 +588,8 @@ leadership: [
 { name: 'Quadras do Futuro', role: 'Professor voluntário de Física', desc: 'Aulas semanais de reforço para crianças, com roteiro, demonstrações animadas e slides próprios.' }
 ],
 awards: [
-{ rank: '1º', title: 'Claude Impact Lab', org: 'Hackathon global da Anthropic · 2026', desc: 'Em um dia, com um time de 4, resolvemos um desafio real da Secretaria de Educação do Rio: matrícula, convocação e vagas em creches. Entrevistando uma família da fila, descobri que números de celular pré-pago deixavam os contatos desatualizados, uma causa-raiz invisível nos dados, e redesenhamos a solução em torno disso. O time agora ajuda a Prefeitura a implementá-la.' },
-{ rank: '3º', title: 'Hackathon Visagio X', org: 'Visagio · nov/2026', desc: 'Terceiro lugar com a Pactua, negociação de dívidas com agente de IA que descobre antes de propor, no time IMPUC (IMPA Tech + PUC-Rio). Atuei como PO: modelo de negócio e concepção do laboratório de simulação.' }
+{ rank: '1º', photo: 'assets/premio-cil.jpg', photoAlt: 'Evandro assinando o certificado do 1º lugar no Claude Impact Lab', title: 'Claude Impact Lab', org: 'Hackathon global da Anthropic · 2026', desc: 'Em um dia, com um time de 4, resolvemos um desafio real da Secretaria de Educação do Rio: matrícula, convocação e vagas em creches. Entrevistando uma família da fila, descobri que números de celular pré-pago deixavam os contatos desatualizados, uma causa-raiz invisível nos dados, e redesenhamos a solução em torno disso. O time agora ajuda a Prefeitura a implementá-la.' },
+{ rank: '3º', photo: 'assets/premio-vx.jpg', photoAlt: 'Time IMPUC com o cheque de 3º lugar no Hackathon VX', title: 'Hackathon Visagio X', org: 'Visagio · nov/2026', desc: 'Terceiro lugar com a Pactua, negociação de dívidas com agente de IA que descobre antes de propor, no time IMPUC (IMPA Tech + PUC-Rio). Atuei como PO: modelo de negócio e concepção do laboratório de simulação.' }
 ],
 olympiads: [
 { name: 'Olimpíada Brasileira de Matemática das Escolas Públicas (OBMEP)', result: '2 ouros · 3 pratas · 1 bronze', years: '2017 a 2023' },
@@ -669,8 +675,8 @@ leadership: [
 { name: 'Quadras do Futuro', role: 'Volunteer physics teacher', desc: 'Weekly tutoring classes for children, with my own lesson plans, animated demos and slides.' }
 ],
 awards: [
-{ rank: '1st', title: 'Claude Impact Lab', org: "Anthropic's global hackathon · 2026", desc: "In one day, on a team of 4, we tackled a real challenge from Rio's Education Department: daycare enrollment, call-ups and vacancies. Interviewing a family on the waiting list, I found that prepaid phone numbers left contact records outdated, a root cause invisible in the data, and we redesigned the solution around it. The team is now helping the city implement it." },
-{ rank: '3rd', title: 'Hackathon Visagio X', org: 'Visagio · Nov 2026', desc: 'Third place with Pactua, AI-agent debt negotiation that listens before it offers, on team IMPUC (IMPA Tech + PUC-Rio). I was the PO: business model and the design of the simulation lab.' }
+{ rank: '1st', photo: 'assets/premio-cil.jpg', photoAlt: 'Evandro signing the 1st place certificate at the Claude Impact Lab', title: 'Claude Impact Lab', org: "Anthropic's global hackathon · 2026", desc: "In one day, on a team of 4, we tackled a real challenge from Rio's Education Department: daycare enrollment, call-ups and vacancies. Interviewing a family on the waiting list, I found that prepaid phone numbers left contact records outdated, a root cause invisible in the data, and we redesigned the solution around it. The team is now helping the city implement it." },
+{ rank: '3rd', photo: 'assets/premio-vx.jpg', photoAlt: 'Team IMPUC with the 3rd place check at Hackathon VX', title: 'Hackathon Visagio X', org: 'Visagio · Nov 2026', desc: 'Third place with Pactua, AI-agent debt negotiation that listens before it offers, on team IMPUC (IMPA Tech + PUC-Rio). I was the PO: business model and the design of the simulation lab.' }
 ],
 olympiads: [
 { name: 'Brazilian Public Schools Mathematics Olympiad (OBMEP)', result: '2 gold · 3 silver · 1 bronze', years: '2017 to 2023' },
@@ -747,7 +753,7 @@ return {
 t: UI[lang], c,
 heroCapA: d.projects[1].name, heroBigB: d.awards[1].rank, heroCapB: d.awards[1].title, heroBigC: d.highlights[3].big, heroCapC: d.highlights[3].title, heroCapD: d.projects[0].name, heroBadgeD: d.awards[0].rank + ' · ' + d.awards[0].title, 
 fontPx: SIZES[this.state.size] + 'px',
-highlights: d.highlights, experience, projects, leadership: d.leadership, awards: d.awards, olympiads: d.olympiads, education: d.education, certs: d.certs,
+highlights: d.highlights, experience, projects, leadership: d.leadership, awards: d.awards.map((a) => ({ ...a, hasPhoto: !!a.photo })), olympiads: d.olympiads, education: d.education, certs: d.certs,
 ptPressed: String(lang === 'pt'), enPressed: String(lang === 'en'),
 ptBg: on(lang === 'pt'), ptInk: onInk(lang === 'pt'), enBg: on(lang === 'en'), enInk: onInk(lang === 'en'),
 hcPressed: String(hc), hcBg: on(hc), hcInk: onInk(hc),
