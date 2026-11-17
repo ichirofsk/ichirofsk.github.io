@@ -236,7 +236,7 @@ Evandro Ichiro Fuse Sakai</a>
 </svg>
 </sc-if>
 <sc-if value="{{p.showImg}}" hint-placeholder-val="{{ false }}">
-<img src="{{p.cur}}" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left">
+<img src="{{p.cur}}" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: {{p.fit}}; object-position: {{p.pos}}; background: {{c.soft}}">
 </sc-if>
 
 
@@ -276,7 +276,7 @@ Evandro Ichiro Fuse Sakai</a>
 <div role="group" aria-label="{{t.shotsLabel}}" style="display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 28px 0">
 <sc-for list="{{p.thumbs}}" as="th" hint-placeholder-count="3">
 <button type="button" onClick="{{th.pick}}" aria-label="{{th.label}}" aria-pressed="{{th.pressed}}" style="width: 70px; height: 46px; padding: 0; border: {{th.border}}; background: {{c.card}}; opacity: {{th.op}}; cursor: pointer">
-<sc-if value="{{th.isImg}}" hint-placeholder-val="{{ true }}"><img src="{{th.u}}" alt="" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left"></sc-if>
+<sc-if value="{{th.isImg}}" hint-placeholder-val="{{ true }}"><img src="{{th.u}}" alt="" style="display: block; width: 100%; height: 100%; object-fit: {{p.fit}}; object-position: {{p.pos}}; background: {{c.soft}}"></sc-if>
 <sc-if value="{{th.isMotor}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 70 46" width="100%" height="100%" aria-hidden="true" style="display: block; background: {{c.soft}}"><circle cx="35" cy="23" r="14" fill="none" stroke="{{c.ink}}" stroke-width="1.4" stroke-dasharray="3 4"></circle><circle cx="35" cy="23" r="5" fill="{{c.ink}}"></circle><path d="M8 23h12M50 23h12" stroke="{{c.ink}}" stroke-width="1.4"></path></svg></sc-if>
 </button>
 </sc-for>
@@ -489,7 +489,7 @@ function scheduleRender(){ if (!pending) { pending = true; requestAnimationFrame
 
 const SIZES = [14, 16, 18, 20, 22, 24];
 const SHOTS = {
-antikaos: ['assets/antikaos-1.jpg'],
+antikaos: ['assets/antikaos-1.jpg', 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/72/70/70/72707070-5aa5-8cbb-c160-c93033ce16a3/Simulator_Screenshot_-_iPhone_17_-_2026-05-20_at_23.26.20.png/600x1300bb.jpg', 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/5a/fd/d3/5afdd3ca-2551-65d5-6c06-88d8d2532a35/Simulator_Screenshot_-_iPhone_17_-_2026-05-20_at_23.26.54.png/600x1300bb.jpg', 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/8d/65/cf/8d65cf69-a10b-f39e-8567-55f9ed1e0809/Simulator_Screenshot_-_iPhone_17_-_2026-05-20_at_23.27.09.png/600x1300bb.jpg', 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/87/f3/2f/87f32f8d-21fa-76b7-675f-882b04333bd1/Simulator_Screenshot_-_iPhone_17_-_2026-05-20_at_23.27.32.png/600x1300bb.jpg', 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/26/4f/98/264f9874-bfd0-a6c8-6f63-53bfbc266563/Simulator_Screenshot_-_iPhone_17_-_2026-05-20_at_23.27.47.png/600x1300bb.jpg', 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/57/3a/88/573a8878-99ec-3d5d-0387-734e9e7baa20/Simulator_Screenshot_-_iPhone_17_-_2026-05-20_at_23.28.51.png/600x1300bb.jpg'],
 pactua: ['motor', 'assets/pactua-1.jpg', 'assets/pactua-2.jpg', 'assets/pactua-3.jpg'],
 creche: ['assets/creche-1.jpg', 'assets/creche-2.jpg'],
 hub: ['assets/hub-1.jpg', 'assets/hub-2.jpg', 'assets/hub-3.jpg', 'assets/hub-4.jpg', 'assets/hub-5.jpg', 'assets/hub-6.jpg'],
@@ -718,6 +718,8 @@ hasShots: !!SHOTS[p.illus],
 hasThumbs: (SHOTS[p.illus] || []).length > 1,
 hasLink: !!p.link,
 hasLink2: !!p.link2,
+fit: p.illus === 'antikaos' ? 'contain' : 'cover',
+pos: p.illus === 'antikaos' ? 'center' : 'top left',
 cur: SHOTS[p.illus] ? SHOTS[p.illus][(this.state.shot || {})[p.illus] || 0] : '',
 showMotor: !!SHOTS[p.illus] && SHOTS[p.illus][(this.state.shot || {})[p.illus] || 0] === 'motor',
 showImg: !!SHOTS[p.illus] && SHOTS[p.illus][(this.state.shot || {})[p.illus] || 0] !== 'motor',
