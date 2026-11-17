@@ -453,6 +453,7 @@ function scheduleRender(){ if (!pending) { pending = true; requestAnimationFrame
 
 const SIZES = [14, 16, 18, 20, 22, 24];
 const SHOTS = {
+pactua: ['assets/pactua-1.jpg', 'assets/pactua-2.jpg', 'assets/pactua-3.jpg'],
 creche: ['assets/creche-1.jpg', 'assets/creche-2.jpg'],
 hub: ['assets/hub-1.jpg', 'assets/hub-2.jpg', 'assets/hub-3.jpg', 'assets/hub-4.jpg', 'assets/hub-5.jpg', 'assets/hub-6.jpg'],
 aval: ['assets/avaliacoes-1.jpg', 'assets/avaliacoes-2.jpg'],
@@ -514,9 +515,9 @@ role: 'entrevista com famílias, achado da causa-raiz e redesenho da solução',
 { illus: 'hub', illusAlt: 'Telas do hub recriadas para o portfólio, com dados fictícios', kind: 'Plataforma · i12', name: 'Hub de membros do Instituto 12', badge: '',
 desc: 'Hub privado para os membros do instituto, pensado para o celular e instalável como app, e um painel para a equipe. O membro diz quantas pessoas, o dia e o horário, e o hub sugere a sala; também tem feed, agenda de eventos, diretório de membros e suporte em formato de conversa. Permissões garantidas no próprio banco e mais de 30 decisões de produto registradas. As telas são recriações com dados fictícios.',
 role: 'escopo, regras de negócio, design e desenvolvimento', tags: ['Next.js', 'Supabase', 'PWA', 'Mobile first'] },
-{ illus: 'pactua', illusAlt: 'Ilustração: rede de agentes conectados a um agente central', kind: 'Hackathon · Agentes', name: 'Pactua', badge: '3º lugar · Hackathon VX (Visagio)',
-desc: 'Modelo de negócio com um laboratório de simulação: um sandbox em que agentes interagem a partir dos perfis dos leads para testar abordagens antes do contato real. Time IMPUC, de alunos do IMPA Tech e da PUC-Rio.',
-role: 'PO, responsável pelo modelo de negócio e pela concepção do laboratório', tags: ['Multiagentes', 'Simulação', 'B2B'] },
+{ illus: 'pactua', illusAlt: 'Telas da demo da Pactua: painel do gestor, atendimento auditado e fechamento com PIX (dados sintéticos do desafio)', kind: 'Hackathon · Agentes de IA', name: 'Pactua', badge: '3º lugar · Hackathon VX (Visagio)',
+desc: 'Negociação de dívidas que descobre antes de propor, feita para o desafio de cobrança em escala de uma operadora fictícia. A Clara, agente LLM no Amazon Bedrock, conversa e descobre quanto cabe e quando a pessoa recebe; um motor escolhe a proposta, a API oficial calcula e uma auditoria confere cada mensagem antes de sair. No laboratório, nos mesmos 80 clientes simulados, recuperou 1,54× o que a cobrança atual recupera, com 0 violações da política contra 5. Time IMPUC, de alunos do IMPA Tech e da PUC-Rio.',
+role: 'PO, responsável pelo modelo de negócio e pela concepção do laboratório de simulação', tags: ['Amazon Bedrock', 'Agentes LLM', 'Simulação', 'Auditoria'] },
 { illus: 'aval', illusAlt: 'Painel do gestor com médias, aprovados e entregas por avaliação (dados anonimizados)', kind: 'Produto interno · Convem', name: 'Plataforma de avaliações de compliance', badge: '',
 desc: 'Provas de conhecimento sobre compliance e gestão, com tentativas ilimitadas, respostas comentadas ao final e resultados consolidados em um dashboard do gestor. Deploy real, sem custo de banco de dados.',
 role: 'concepção, desenvolvimento e deploy', tags: ['Deploy', 'Dashboard', 'EdTech corporativa'] },
@@ -538,7 +539,7 @@ leadership: [
 ],
 awards: [
 { rank: '1º', title: 'Claude Impact Lab', org: 'Hackathon global da Anthropic · 2026', desc: 'Em um dia, com um time de 4, resolvemos um desafio real da Secretaria de Educação do Rio: matrícula, convocação e vagas em creches. Entrevistando uma família da fila, descobri que números de celular pré-pago deixavam os contatos desatualizados, uma causa-raiz invisível nos dados, e redesenhamos a solução em torno disso. O time agora ajuda a Prefeitura a implementá-la.' },
-{ rank: '3º', title: 'Hackathon Visagio X', org: 'Visagio · nov/2026', desc: 'Terceiro lugar com a Pactua, no time IMPUC (IMPA Tech + PUC-Rio). Atuei como PO: modelo de negócio e concepção do laboratório de simulação com agentes.' }
+{ rank: '3º', title: 'Hackathon Visagio X', org: 'Visagio · nov/2026', desc: 'Terceiro lugar com a Pactua, negociação de dívidas com agente de IA que descobre antes de propor, no time IMPUC (IMPA Tech + PUC-Rio). Atuei como PO: modelo de negócio e concepção do laboratório de simulação.' }
 ],
 olympiads: [
 { name: 'Olimpíada Brasileira de Matemática das Escolas Públicas (OBMEP)', result: '2 ouros · 3 pratas · 1 bronze', years: '2017 a 2023' },
@@ -595,9 +596,9 @@ role: 'family interviews, root-cause finding and solution redesign', tags: ['Cla
 { illus: 'hub', illusAlt: 'Hub screens recreated for this portfolio with fictional data', kind: 'Platform · i12', name: 'Instituto 12 Members Hub', badge: '',
 desc: 'A private, mobile-first hub for the institute’s members, installable as an app, plus a dashboard for the staff. Members say how many people, the day and the time, and the hub suggests the room; there is also a feed, an event calendar, a member directory and chat-style support. Permissions are enforced in the database itself, and more than 30 product decisions are documented. The screens are recreations with fictional data.',
 role: 'scope, business rules, design and development', tags: ['Next.js', 'Supabase', 'PWA', 'Mobile first'] },
-{ illus: 'pactua', illusAlt: 'Illustration: a network of agents connected to a central agent', kind: 'Hackathon · Agents', name: 'Pactua', badge: '3rd place · Hackathon VX (Visagio)',
-desc: 'A business model built around a simulation lab: a sandbox where agents interact using lead profiles to test approaches before real contact. Team IMPUC, students from IMPA Tech and PUC-Rio.',
-role: 'PO, owning the business model and the lab concept', tags: ['Multi-agent', 'Simulation', 'B2B'] },
+{ illus: 'pactua', illusAlt: 'Pactua demo screens: manager dashboard, audited conversation and PIX closing (synthetic challenge data)', kind: 'Hackathon · AI agents', name: 'Pactua', badge: '3rd place · Hackathon VX (Visagio)',
+desc: 'Debt negotiation that listens before it offers, built for a debt-collection-at-scale challenge for a fictional telecom. Clara, an LLM agent on Amazon Bedrock, finds out what the person can afford and when they get paid; an engine picks the offer, the official API calculates it, and an audit layer checks every message before it goes out. In the lab, on the same 80 simulated customers, it recovered 1.54× what the current collection process does, with 0 policy violations versus 5. Team IMPUC, students from IMPA Tech and PUC-Rio.',
+role: 'PO, owning the business model and the design of the simulation lab', tags: ['Amazon Bedrock', 'LLM agents', 'Simulation', 'Audit'] },
 { illus: 'aval', illusAlt: 'Manager dashboard with averages, passes and submissions per assessment (anonymized data)', kind: 'Internal product · Convem', name: 'Compliance assessment platform', badge: '',
 desc: 'Knowledge tests on compliance and management with unlimited retakes, explained answers at the end and results rolled up into a manager dashboard. Deployed to production with zero database cost.',
 role: 'concept, development and deployment', tags: ['Deploy', 'Dashboard', 'Corporate learning'] },
@@ -619,7 +620,7 @@ leadership: [
 ],
 awards: [
 { rank: '1st', title: 'Claude Impact Lab', org: "Anthropic's global hackathon · 2026", desc: "In one day, on a team of 4, we tackled a real challenge from Rio's Education Department: daycare enrollment, call-ups and vacancies. Interviewing a family on the waiting list, I found that prepaid phone numbers left contact records outdated, a root cause invisible in the data, and we redesigned the solution around it. The team is now helping the city implement it." },
-{ rank: '3rd', title: 'Hackathon Visagio X', org: 'Visagio · Nov 2026', desc: 'Third place with Pactua, on team IMPUC (IMPA Tech + PUC-Rio). I was the PO: business model and the concept of the agent simulation lab.' }
+{ rank: '3rd', title: 'Hackathon Visagio X', org: 'Visagio · Nov 2026', desc: 'Third place with Pactua, AI-agent debt negotiation that listens before it offers, on team IMPUC (IMPA Tech + PUC-Rio). I was the PO: business model and the design of the simulation lab.' }
 ],
 olympiads: [
 { name: 'Brazilian Public Schools Mathematics Olympiad (OBMEP)', result: '2 gold · 3 silver · 1 bronze', years: '2017 to 2023' },
