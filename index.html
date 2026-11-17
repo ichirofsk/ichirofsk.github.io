@@ -51,6 +51,19 @@ html{background:#ECE8DF}
 .zoom img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .zoom:hover img{transform:scale(1.02)}
 .brushline path{stroke-dasharray:1400;stroke-dashoffset:1400}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes flow{to{stroke-dashoffset:-20}}
+@keyframes pulse{50%{transform:scale(1.3)}}
+@keyframes bub{0%,8%{opacity:0;transform:translateY(6px)}18%,82%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes chk{0%,52%{opacity:0;transform:scale(.4)}62%,88%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes offer{0%,64%{opacity:0;transform:translateX(-8px)}74%,90%{opacity:1;transform:none}100%{opacity:0}}
+.m-spin{transform-origin:160px 98px;animation:spin 9s linear infinite}
+.m-spinr{transform-origin:160px 98px;animation:spin 6s linear infinite reverse}
+.m-pulse{transform-origin:160px 98px;animation:pulse 1.6s ease-in-out infinite}
+.m-flow{stroke-dasharray:4 6;animation:flow 1s linear infinite}
+.m-bub{transform-box:fill-box;transform-origin:center;opacity:0;animation:bub 6s ease-in-out infinite}
+.m-chk{transform-box:fill-box;transform-origin:center;opacity:0;animation:chk 6s ease-in-out infinite}
+.m-offer{opacity:0;animation:offer 6s ease-in-out infinite}
 @supports (animation-timeline: view()){
 .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
 .brushline path{animation:brush linear both;animation-timeline:view();animation-range:entry 10% cover 45%}
@@ -60,6 +73,7 @@ html{background:#ECE8DF}
 .enso,.hero-in,.seal,.rv,.brushline path,.sun,.blade,.speed,.ink,.pop{animation:none!important;opacity:1!important;stroke-dashoffset:0!important;transform:none}
 .seal{transform:rotate(-6deg)}
 .petal,.ember,.slashline{display:none}
+.m-spin,.m-spinr,.m-pulse,.m-flow,.m-bub,.m-chk,.m-offer{animation:none!important;opacity:1!important;transform:none!important}
 }
 </style>
 
@@ -196,22 +210,37 @@ Evandro Ichiro Fuse Sakai</a>
 <sc-for list="{{projects}}" as="p" hint-placeholder-count="7">
 <article class="rv lift zoom" style="background: {{c.card}}; border: 1.5px solid {{c.ink}}; overflow: hidden; display: flex; flex-direction: column">
 <figure role="img" class="zoom" aria-label="{{p.illusAlt}}" style="margin: 0; background-color: {{c.soft}}; border-bottom: 1.5px solid {{c.ink}}; padding: {{p.figPad}}; display: flex; justify-content: center">
-<sc-if value="{{p.hasShots}}" hint-placeholder-val="{{ false }}">
+<sc-if value="{{p.showMotor}}" hint-placeholder-val="{{ false }}">
+<svg viewBox="0 0 320 200" width="100%" style="display: block; aspect-ratio: 16 / 10; background: {{c.soft}}">
+<g font-family="JetBrains Mono, monospace" font-size="8.5" fill="{{c.muted}}" text-anchor="middle"><text x="58" y="172">{{t.mConv}}</text><text x="160" y="172">{{t.mMotor}}</text><text x="226" y="172">{{t.mAudit}}</text><text x="282" y="172">{{t.mOffer}}</text></g>
+<g stroke="{{c.ink}}" stroke-width="1.4">
+<rect class="m-bub" x="18" y="48" width="76" height="20" rx="10" fill="{{c.card}}"></rect>
+<rect class="m-bub" x="30" y="76" width="64" height="20" rx="10" fill="{{c.ink}}" style="animation-delay: .5s"></rect>
+<rect class="m-bub" x="18" y="104" width="70" height="20" rx="10" fill="{{c.card}}" style="animation-delay: 1s"></rect>
+<rect class="m-bub" x="34" y="132" width="60" height="20" rx="10" fill="{{c.ink}}" style="animation-delay: 1.5s"></rect>
+</g>
+<path class="m-flow" d="M100 98 H122" fill="none" stroke="{{c.ink}}" stroke-width="1.6"></path>
+<circle class="m-spin" cx="160" cy="98" r="36" fill="none" stroke="{{c.ink}}" stroke-width="1.4" stroke-dasharray="3 7"></circle>
+<circle class="m-spinr" cx="160" cy="98" r="25" fill="none" stroke="{{c.ink}}" stroke-width="2.2" stroke-dasharray="16 8"></circle>
+<circle class="m-pulse" cx="160" cy="98" r="9" fill="{{c.ink}}"></circle>
+<path class="m-flow" d="M198 98 H212" fill="none" stroke="{{c.ink}}" stroke-width="1.6"></path>
+<path d="M226 78 l14 5 v11 c0 9 -6 15 -14 18 c-8 -3 -14 -9 -14 -18 v-11z" fill="{{c.card}}" stroke="{{c.ink}}" stroke-width="1.6"></path>
+<path class="m-chk" d="M220 96 l4.5 4.5 l8 -9" fill="none" stroke="{{c.accent}}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+<path class="m-flow" d="M242 98 H254" fill="none" stroke="{{c.ink}}" stroke-width="1.6"></path>
+<g class="m-offer">
+<rect x="258" y="66" width="48" height="64" rx="4" fill="{{c.card}}" stroke="{{c.ink}}" stroke-width="1.6"></rect>
+<rect x="258" y="66" width="48" height="10" rx="2" fill="{{c.ink}}"></rect>
+<path d="M266 88 h32 M266 98 h24 M266 108 h28" stroke="{{c.ink}}" stroke-width="2" stroke-linecap="round"></path>
+<rect x="266" y="116" width="20" height="7" rx="3.5" fill="{{c.accent}}"></rect>
+</g>
+</svg>
+</sc-if>
+<sc-if value="{{p.showImg}}" hint-placeholder-val="{{ false }}">
 <img src="{{p.cur}}" alt="" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left">
 </sc-if>
 
 
 
-<sc-if value="{{p.isPactua}}" hint-placeholder-val="{{ false }}">
-<svg viewBox="0 0 320 150" width="100%" height="150" aria-hidden="true">
-<g stroke="{{c.ink}}" stroke-width="1.5" fill="none"><path d="M160 75L80 30M160 75L60 100M160 75L120 130M160 75L240 28M160 75L262 92M160 75L206 132M80 30L60 100M240 28L262 92"></path></g>
-<g fill="{{c.card}}" stroke="{{c.ink}}" stroke-width="2"><circle cx="80" cy="30" r="13"></circle><circle cx="60" cy="100" r="13"></circle><circle cx="120" cy="130" r="11"></circle><circle cx="240" cy="28" r="13"></circle><circle cx="262" cy="92" r="13"></circle><circle cx="206" cy="132" r="11"></circle></g>
-<circle cx="160" cy="75" r="24" fill="{{c.accent}}"></circle>
-<rect x="148" y="66" width="24" height="18" rx="4" fill="none" stroke="{{c.card}}" stroke-width="2.5"></rect>
-<g fill="{{c.card}}"><circle cx="155" cy="75" r="2.5"></circle><circle cx="165" cy="75" r="2.5"></circle></g>
-<g fill="{{c.accent}}"><circle cx="80" cy="30" r="4"></circle><circle cx="262" cy="92" r="4"></circle><circle cx="60" cy="100" r="4"></circle></g>
-</svg>
-</sc-if>
 
 
 
@@ -243,11 +272,12 @@ Evandro Ichiro Fuse Sakai</a>
 </sc-if>
 
 </figure>
-<sc-if value="{{p.hasShots}}" hint-placeholder-val="{{ false }}">
+<sc-if value="{{p.hasThumbs}}" hint-placeholder-val="{{ false }}">
 <div role="group" aria-label="{{t.shotsLabel}}" style="display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 28px 0">
 <sc-for list="{{p.thumbs}}" as="th" hint-placeholder-count="3">
 <button type="button" onClick="{{th.pick}}" aria-label="{{th.label}}" aria-pressed="{{th.pressed}}" style="width: 70px; height: 46px; padding: 0; border: {{th.border}}; background: {{c.card}}; opacity: {{th.op}}; cursor: pointer">
-<img src="{{th.u}}" alt="" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left">
+<sc-if value="{{th.isImg}}" hint-placeholder-val="{{ true }}"><img src="{{th.u}}" alt="" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left"></sc-if>
+<sc-if value="{{th.isMotor}}" hint-placeholder-val="{{ false }}"><svg viewBox="0 0 70 46" width="100%" height="100%" aria-hidden="true" style="display: block; background: {{c.soft}}"><circle cx="35" cy="23" r="14" fill="none" stroke="{{c.ink}}" stroke-width="1.4" stroke-dasharray="3 4"></circle><circle cx="35" cy="23" r="5" fill="{{c.ink}}"></circle><path d="M8 23h12M50 23h12" stroke="{{c.ink}}" stroke-width="1.4"></path></svg></sc-if>
 </button>
 </sc-for>
 </div>
@@ -265,6 +295,9 @@ Evandro Ichiro Fuse Sakai</a>
 <span style="padding: 4px 10px; border: 1px solid {{c.line}}; border-radius: 4px; font-size: 0.8125em; color: {{c.muted}}">{{tg}}</span>
 </sc-for>
 </div>
+<sc-if value="{{p.hasLink}}" hint-placeholder-val="{{ false }}">
+<a href="{{p.link}}" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; color: {{c.ink}}; text-underline-offset: 4px">{{t.seeGithub}}</a>
+</sc-if>
 </div>
 </article>
 </sc-for>
@@ -453,7 +486,8 @@ function scheduleRender(){ if (!pending) { pending = true; requestAnimationFrame
 
 const SIZES = [14, 16, 18, 20, 22, 24];
 const SHOTS = {
-pactua: ['assets/pactua-1.jpg', 'assets/pactua-2.jpg', 'assets/pactua-3.jpg'],
+antikaos: ['assets/antikaos-1.jpg'],
+pactua: ['motor', 'assets/pactua-1.jpg', 'assets/pactua-2.jpg', 'assets/pactua-3.jpg'],
 creche: ['assets/creche-1.jpg', 'assets/creche-2.jpg'],
 hub: ['assets/hub-1.jpg', 'assets/hub-2.jpg', 'assets/hub-3.jpg', 'assets/hub-4.jpg', 'assets/hub-5.jpg', 'assets/hub-6.jpg'],
 aval: ['assets/avaliacoes-1.jpg', 'assets/avaliacoes-2.jpg'],
@@ -468,8 +502,8 @@ kicker: 'Inteligência Artificial · PUC-Rio · Rio de Janeiro',
 heroLine: 'Construo produtos de IA aplicada que saem do protótipo e entram em uso, de agentes e automações a plataformas internas, e monto as estruturas e comunidades para que eles continuem existindo.',
 ctaProjects: 'Ver projetos', highlightsLabel: 'Destaques', projTitle: 'Projetos selecionados', myRole: 'Meu papel:',
 leadTitle: 'Liderança e comunidade', awardsTitle: 'Prêmios e conquistas', navAwards: 'Prêmios', olyTitle: 'Olimpíadas científicas', olySub: 'Medalhista nacional desde 2017, com formação matemática no IMPA (PIC e PIC Avançado).', eduTitle: 'Formação e certificações',
-contactTitle: 'Vamos construir algo que entre em uso.', contactLine: 'Aberto a estágios em IA aplicada, parcerias com a LIA e conversas sobre produtos AI-native.',
-emailPh: 'evandroichirofusesakai@gmail.com', githubPh: 'github.com/ichirofsk', shotLabel: 'Tela', shotsLabel: 'Telas do projeto'
+contactTitle: 'Vamos construir algo que entre em uso.', contactLine: 'Aberto a conversas sobre IA aplicada, parcerias com a LIA e trocas sobre produtos AI-native.',
+emailPh: 'evandroichirofusesakai@gmail.com', githubPh: 'github.com/ichirofsk', shotLabel: 'Tela', shotsLabel: 'Telas do projeto', shotMotor: 'Motor em ação (ilustração)', seeGithub: 'Ver no GitHub ›', mConv: 'conversa', mMotor: 'motor', mAudit: 'auditoria', mOffer: 'proposta'
 },
 en: {
 lang: 'en', navLabel: 'Sections', navExp: 'Experience', navProj: 'Projects', navLead: 'Leadership', navEdu: 'Education', navContact: 'Contact',
@@ -478,8 +512,8 @@ kicker: 'Artificial Intelligence · PUC-Rio · Rio de Janeiro',
 heroLine: 'I build applied AI products that make it past the prototype and into real use, from agents and automations to internal platforms, and I set up the structures and communities that keep them alive.',
 ctaProjects: 'See projects', highlightsLabel: 'Highlights', projTitle: 'Selected projects', myRole: 'My role:',
 leadTitle: 'Leadership and community', awardsTitle: 'Awards and achievements', navAwards: 'Awards', olyTitle: 'Science olympiads', olySub: 'National medalist since 2017, with mathematical training at IMPA (PIC and Advanced PIC).', eduTitle: 'Education and certifications',
-contactTitle: "Let's build something people actually use.", contactLine: 'Open to applied AI internships, partnerships with LIA and conversations about AI-native products.',
-emailPh: 'evandroichirofusesakai@gmail.com', githubPh: 'github.com/ichirofsk', shotLabel: 'Screen', shotsLabel: 'Project screens'
+contactTitle: "Let's build something people actually use.", contactLine: 'Open to conversations about applied AI, partnerships with LIA and exchanges about AI-native products.',
+emailPh: 'evandroichirofusesakai@gmail.com', githubPh: 'github.com/ichirofsk', shotLabel: 'Screen', shotsLabel: 'Project screens', shotMotor: 'Engine at work (illustration)', seeGithub: 'View on GitHub ›', mConv: 'conversation', mMotor: 'engine', mAudit: 'audit', mOffer: 'offer'
 }
 };
 
@@ -524,6 +558,9 @@ role: 'concepção, desenvolvimento e deploy', tags: ['Deploy', 'Dashboard', 'Ed
 { illus: 'whats', illusAlt: 'Simulador da conversa: o agente qualifica o interessado e conduz ao agendamento', kind: 'Agente de IA · Atendimento', name: 'Secretária virtual no WhatsApp', badge: '',
 desc: 'Agente que atende o WhatsApp de uma unidade Kumon de Japonês no Rio, qualifica os interessados e agenda avaliações gratuitas sozinho, dentro do horário da unidade.',
 role: 'arquitetura e implementação', tags: ['WhatsApp API', 'Twilio', 'n8n', 'Cal.com'] },
+{ illus: 'antikaos', illusAlt: 'Ícone do AntiKaos: um rabisco embaralhado que vira uma linha contínua', kind: 'App iOS · Apple Developer Academy', name: 'AntiKaos', badge: '', link: 'https://github.com/ichirofsk/AntiKaos',
+desc: 'App de iPhone que transforma deadlines em uma rotina possível. Cada deadline vira sessões distribuídas na semana conforme o seu tempo disponível, a proximidade da entrega e a dificuldade percebida, e o app mede a sua Sobrecarga de 0 a 100. Tem widget, Live Activity na tela bloqueada, notificações e sincronização com o Calendário e os Lembretes da Apple.',
+role: 'desenvolvimento em equipe na Apple Developer Academy', tags: ['Swift', 'SwiftUI', 'WidgetKit', 'StoreKit'] },
 { illus: 'flow', illusAlt: 'Ilustração: um CRM distribuindo dados para planilha, base de membros e e-mail', kind: 'Automação · i12', name: 'Fluxo de membros CRM → Notion → e-mail', badge: '',
 desc: 'Quando um negócio é ganho no Pipedrive, os dados do novo membro entram na planilha, no Notion e no EmailOctopus; quando é perdido, a pessoa sai da base e passa a receber a comunicação de não-membro.',
 role: 'desenho do fluxo e guia de configuração para a equipe', tags: ['Make', 'Pipedrive', 'Notion', 'EmailOctopus'] },
@@ -605,6 +642,9 @@ role: 'concept, development and deployment', tags: ['Deploy', 'Dashboard', 'Corp
 { illus: 'whats', illusAlt: 'Conversation simulator: the agent qualifies the prospect and leads to a booking', kind: 'AI agent · Customer service', name: 'WhatsApp virtual assistant', badge: '',
 desc: "An agent that answers a Kumon Japanese-language center's WhatsApp in Rio, qualifies prospects and books free assessments on its own, within the center's opening hours.",
 role: 'architecture and implementation', tags: ['WhatsApp API', 'Twilio', 'n8n', 'Cal.com'] },
+{ illus: 'antikaos', illusAlt: 'AntiKaos icon: a tangled scribble that turns into a continuous line', kind: 'iOS app · Apple Developer Academy', name: 'AntiKaos', badge: '', link: 'https://github.com/ichirofsk/AntiKaos',
+desc: 'An iPhone app that turns deadlines into a doable routine. Each deadline becomes sessions spread across the week based on your available time, how close the due date is and how hard it feels, and the app measures your Overload from 0 to 100. It has a widget, a Live Activity on the lock screen, notifications and sync with Apple Calendar and Reminders.',
+role: 'team development at the Apple Developer Academy', tags: ['Swift', 'SwiftUI', 'WidgetKit', 'StoreKit'] },
 { illus: 'flow', illusAlt: 'Illustration: a CRM distributing data to a spreadsheet, a member base and email', kind: 'Automation · i12', name: 'Member flow: CRM → Notion → email', badge: '',
 desc: "When a deal is won in Pipedrive, the new member's data lands in the spreadsheet, Notion and EmailOctopus; when it's lost, the person leaves the base and moves to non-member communications.",
 role: 'flow design and a setup guide for the team', tags: ['Make', 'Pipedrive', 'Notion', 'EmailOctopus'] },
@@ -672,11 +712,15 @@ const projects = d.projects.map((p) => ({
 ...p,
 figPad: SHOTS[p.illus] ? '0' : '20px 24px',
 hasShots: !!SHOTS[p.illus],
+hasThumbs: (SHOTS[p.illus] || []).length > 1,
+hasLink: !!p.link,
 cur: SHOTS[p.illus] ? SHOTS[p.illus][(this.state.shot || {})[p.illus] || 0] : '',
+showMotor: !!SHOTS[p.illus] && SHOTS[p.illus][(this.state.shot || {})[p.illus] || 0] === 'motor',
+showImg: !!SHOTS[p.illus] && SHOTS[p.illus][(this.state.shot || {})[p.illus] || 0] !== 'motor',
 thumbs: (SHOTS[p.illus] || []).map((u, i, arr) => {
 const on = ((this.state.shot || {})[p.illus] || 0) === i;
-return { u, pressed: String(on), op: on ? 1 : 0.55, border: on ? '2px solid ' + c.ink : '1px solid ' + c.line,
-label: UI[lang].shotLabel + ' ' + (i + 1) + ' / ' + arr.length,
+return { u, isImg: u !== 'motor', isMotor: u === 'motor', pressed: String(on), op: on ? 1 : 0.55, border: on ? '2px solid ' + c.ink : '1px solid ' + c.line,
+label: u === 'motor' ? UI[lang].shotMotor : UI[lang].shotLabel + ' ' + (i + 1) + ' / ' + arr.length,
 pick: () => this.setState({ shot: { ...(this.state.shot || {}), [p.illus]: i } }) };
 }),
 hasBadge: !!p.badge,
